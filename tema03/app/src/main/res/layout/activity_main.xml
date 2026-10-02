@@ -22,7 +22,7 @@
     <Button
         android:id="@+id/btnContinuar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/BotonTarea"
         android:text="@string/continuar"
         app:backgroundTint="@color/verde_continuar"
         app:layout_constraintTop_toBottomOf="@id/tvNombre"
@@ -33,7 +33,7 @@
     <Button
         android:id="@+id/btnCancelar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/BotonTarea"
         android:text="@string/cancelar"
         app:backgroundTint="@color/rojo_cancelar"
         app:layout_constraintTop_toTopOf="@id/btnContinuar"
