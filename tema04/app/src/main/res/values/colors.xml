@@ -2,5 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="franja_izquierda">#E53935</color>
+    <color name="franja_izquierda">#E76F51</color>
+    <color name="franja_centro">#F4A261</color>
+    <color name="franja_derecha">#2A9D8F</color>
+    <color name="bloque1">#264653</color>
+    <color name="bloque2">#E9C46A</color>
 </resources>
