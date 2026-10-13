@@ -8,4 +8,8 @@
     <color name="bloque1">#264653</color>
     <color name="bloque2">#E9C46A</color>
     <color name="cuadrado">#6A4C93</color>
+    <color name="calc_fondo">#5C677D</color>
+    <color name="calc_pantalla">#33415C</color>
+    <color name="calc_boton">#0B132B</color>
+    <color name="calc_texto">#FFFFFF</color>
 </resources>
