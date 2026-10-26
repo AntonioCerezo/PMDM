@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         // 2. La lista: cómo se colocan las filas y quién las pinta
         RecyclerView rvVideojuegos = findViewById(R.id.rvVideojuegos);
         rvVideojuegos.setLayoutManager(new LinearLayoutManager(this));
+        rvVideojuegos.addItemDecoration(
+                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         rvVideojuegos.setAdapter(new AdaptadorVideojuegos(videojuegos));
     }
 }
