@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String CORREO_VALIDO = "antonio@correo.com";
     private static final String CLAVE_VALIDA = "1234";
+
+    // Añadido: Atributo global para el contador
+    private int intentos = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,18 @@ public class MainActivity extends AppCompatActivity {
             String correo = etCorreo.getText().toString().trim();
             String clave = etClave.getText().toString();
 
+
+            if (correo.isEmpty()) {
+                etCorreo.setError(getString(R.string.falta_correo));
+                return;
+            }
+            if (clave.isEmpty()) {
+                etClave.setError(getString(R.string.falta_clave));
+                return;
+            }
+
             if (correo.equals(CORREO_VALIDO) && clave.equals(CLAVE_VALIDA)) {
+                intentos = 0;
                 tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.correcto));
                 if (swRecordar.isChecked()) {
                     tvMensaje.setText(R.string.acceso_recordado);
@@ -48,8 +63,16 @@ public class MainActivity extends AppCompatActivity {
                     tvMensaje.setText(R.string.acceso_correcto);
                 }
             } else {
+                intentos++;
                 tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.incorrecto));
-                tvMensaje.setText(R.string.acceso_incorrecto);
+
+                if (intentos >= 3) {
+                    tvMensaje.setText(R.string.demasiados_intentos);
+                    btnContinuar.setEnabled(false);
+                    Toast.makeText(this, R.string.demasiados_intentos, Toast.LENGTH_SHORT).show();
+                } else {
+                    tvMensaje.setText(R.string.acceso_incorrecto);
+                }
             }
         });
     }
