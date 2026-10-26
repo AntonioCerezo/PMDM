@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LoginAntonio</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="texto_correo">correo@gmail.com</string>
+    <string name="texto_contraseña">Escribe aqui tu contraseña</string>
+    <string name="recordar">Recordar Contraseña</string>
+    <string name="continuar">Continuar</string>
+</resources>
