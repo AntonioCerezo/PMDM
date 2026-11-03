@@ -4,7 +4,7 @@
     <string name="contrasena">Contraseña</string>
     <string name="texto_correo">correo@gmail.com</string>
     <string name="texto_contraseña">Escribe aqui tu contraseña</string>
-    <string name="recordar">Recordar Contraseña</string>
+    <string name="recordar">Recordar Correo</string>
     <string name="continuar">Continuar</string>
     <string name="acceso_correcto">Usuario y contraseña correctos</string>
     <string name="acceso_recordado">Usuario y contraseña correctos. Almacenados para siguientes accesos</string>
