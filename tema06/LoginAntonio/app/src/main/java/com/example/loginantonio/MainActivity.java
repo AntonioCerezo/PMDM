@@ -1,5 +1,6 @@
 package com.example.loginantonio;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,12 +57,13 @@ public class MainActivity extends AppCompatActivity {
 
             if (correo.equals(CORREO_VALIDO) && clave.equals(CLAVE_VALIDA)) {
                 intentos = 0;
-                tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.correcto));
-                if (swRecordar.isChecked()) {
-                    tvMensaje.setText(R.string.acceso_recordado);
-                } else {
-                    tvMensaje.setText(R.string.acceso_correcto);
-                }
+
+                // Nuevo bloque: Navegación al menú y cierre de la pila del login
+                Intent intent = new Intent(this, MenuActivity.class);
+                intent.putExtra(MenuActivity.EXTRA_CORREO, correo);
+                startActivity(intent);
+                finish();   // el login sale de la pila
+
             } else {
                 intentos++;
                 tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.incorrecto));

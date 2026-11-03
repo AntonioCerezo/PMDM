@@ -1,6 +1,7 @@
 package com.example.loginantonio;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +21,8 @@ public class MenuActivity extends AppCompatActivity {
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        String correo = getIntent().getStringExtra(EXTRA_CORREO);
+        TextView tvSaludo = findViewById(R.id.tvSaludo);
+        tvSaludo.setText("Hola, " + correo);
     }
 }
