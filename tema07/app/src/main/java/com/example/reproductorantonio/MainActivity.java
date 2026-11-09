@@ -1,5 +1,7 @@
 package com.example.reproductorantonio;
 
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +25,17 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar seekBar;
     private TextView tvActual;
     private TextView tvTotal;
+
+    private SoundPool soundPool;
+    private Button btnRisa;
+    private Button btnAplauso;
+    private Button btnDinosaurio;
+    private Button btnPunch;
+    private int idRisa;
+    private int idAplauso;
+    private int idDinosaurio;
+    private int idPunch;
+    private int sonidosCargados = 0;
 
     private boolean arrastrando = false;
 
@@ -51,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
         seekBar = findViewById(R.id.seekBar);
         tvActual = findViewById(R.id.tvActual);
         tvTotal = findViewById(R.id.tvTotal);
+
+        btnRisa = findViewById(R.id.btnRisa);
+        btnAplauso = findViewById(R.id.btnAplauso);
+        btnDinosaurio = findViewById(R.id.btnDinosaurio);
+        btnPunch = findViewById(R.id.btnPunch);
 
         player = new ExoPlayer.Builder(this).build();
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.horror_music);
@@ -96,6 +114,38 @@ public class MainActivity extends AppCompatActivity {
                 arrastrando = false;
             }
         });
+
+        AudioAttributes atributos = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(4)
+                .setAudioAttributes(atributos)
+                .build();
+
+        idRisa = soundPool.load(this, R.raw.risas, 1);
+        idAplauso = soundPool.load(this, R.raw.aplausos, 1);
+        idDinosaurio = soundPool.load(this, R.raw.sonido_dinosaurio, 1);
+        idPunch = soundPool.load(this, R.raw.punch, 1);
+
+        soundPool.setOnLoadCompleteListener((pool, sampleId, status) -> {
+            if (status == 0) {
+                sonidosCargados++;
+                if (sonidosCargados == 4) {
+                    btnRisa.setEnabled(true);
+                    btnAplauso.setEnabled(true);
+                    btnDinosaurio.setEnabled(true);
+                    btnPunch.setEnabled(true);
+                }
+            }
+        });
+
+        btnRisa.setOnClickListener(v -> soundPool.play(idRisa, 1f, 1f, 1, 0, 1f));
+        btnAplauso.setOnClickListener(v -> soundPool.play(idAplauso, 1f, 1f, 1, 0, 1f));
+        btnDinosaurio.setOnClickListener(v -> soundPool.play(idDinosaurio, 1f, 1f, 1, 0, 1f));
+        btnPunch.setOnClickListener(v -> soundPool.play(idPunch, 1f, 1f, 1, 0, 1f));
     }
 
     private String formatear(long ms) {
@@ -122,6 +172,10 @@ public class MainActivity extends AppCompatActivity {
         if (player != null) {
             player.release();
             player = null;
+        }
+        if (soundPool != null) {
+            soundPool.release();
+            soundPool = null;
         }
     }
 }
